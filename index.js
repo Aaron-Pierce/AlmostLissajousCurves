@@ -19,17 +19,19 @@ function draw() {
     frameRate(60)
     // stroke(255)
 
-    let Ix = 0;
+    let xIndex = 0;
     for (let Px of periods) {
-        let Iy = 0;
+        let yIndex = 0;
         for (let Py of periods) {
             let y = WAVE_SIZE * cos(frameCount / Py) + (2 * WAVE_SIZE * (Py / STEP));
             let x = WAVE_SIZE * sin(frameCount / Px) + (2 * WAVE_SIZE * (Px / STEP));
-            stroke(255 - (Px/UPPER_BOUND * 125), (Px/UPPER_BOUND * 122) + (Py/UPPER_BOUND * 122), 255 - (Py/UPPER_BOUND * 125))
-            point(x + MARGINS*Ix - 2.5*STEP, y + MARGINS*Iy - 2.5*STEP)
-            Iy++
+            let color = ([255 - (Px/UPPER_BOUND * 125), (Px/UPPER_BOUND * 122) + (Py/UPPER_BOUND * 122), 255 - (Py/UPPER_BOUND * 125)]);
+            stroke(...color);
+            fill(...color)
+            ellipse(x + MARGINS*xIndex - 2.5*STEP, y + MARGINS*yIndex - 2.5*STEP, 1.5)
+            yIndex++
         }
-        Ix++;
+        xIndex++;
     }
 
 }
